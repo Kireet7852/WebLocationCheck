@@ -27,51 +27,54 @@ const MapScreen: React.FC<MapScreenProps> = ({ route, navigation }) => {
   const { location } = route.params;
   const [mapLoaded, setMapLoaded] = useState(false);
 
-  // Generate HTML with Google Maps JavaScript API
+  // Generate HTML with Leaflet and OpenStreetMap (Free, no API key required)
   const generateMapHTML = () => {
     return `
       <!DOCTYPE html>
       <html>
       <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
         <style>
           html, body, #map {
             height: 100%;
             margin: 0;
             padding: 0;
+            background-color: #f0f0f0;
           }
-          #controls {
-            position: fixed;
-            top: 10px;
-            right: 10px;
-            z-index: 100;
-            background: white;
-            padding: 10px;
-            border-radius: 5px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-          }
-          button {
-            background-color: #4285f4;
+          .custom-button {
+            background-color: #1E88E5;
             color: white;
             border: none;
-            padding: 8px 16px;
-            border-radius: 3px;
-            cursor: pointer;
+            padding: 12px 20px;
+            border-radius: 25px;
+            font-family: sans-serif;
+            font-weight: bold;
             font-size: 14px;
-            margin: 5px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+            cursor: pointer;
+            pointer-events: auto;
           }
-          button:hover {
-            background-color: #3367d6;
+          .controls-container {
+            position: fixed;
+            bottom: 30px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            z-index: 1000;
+            pointer-events: none;
           }
         </style>
       </head>
       <body>
         <div id="map"></div>
-        <div id="controls">
-          <button id="select-btn">Select Location</button>
-          <button id="current-location">Current Location</button>
+        <div class="controls-container">
+          <button class="custom-button" id="select-btn">Select This Location</button>
         </div>
 
+        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
         <script>
           let map;
           let marker;
@@ -79,95 +82,53 @@ const MapScreen: React.FC<MapScreenProps> = ({ route, navigation }) => {
           let currentLng = ${location.longitude};
 
           function initMap() {
-            const initialLocation = { lat: currentLat, lng: currentLng };
+            // Initialize map
+            map = L.map('map', {
+              zoomControl: false
+            }).setView([currentLat, currentLng], 15);
 
-            map = new google.maps.Map(document.getElementById('map'), {
-              zoom: 15,
-              center: initialLocation,
-              mapTypeId: google.maps.MapTypeId.ROADMAP
+            // Add OpenStreetMap tiles
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+              attribution: '© OpenStreetMap contributors'
+            }).addTo(map);
+
+            // Add zoom control to top-right
+            L.control.zoom({
+              position: 'topright'
+            }).addTo(map);
+
+            // Create draggable marker
+            marker = L.marker([currentLat, currentLng], {
+              draggable: true
+            }).addTo(map);
+
+            // Update position when marker is dragged
+            marker.on('dragend', function(event) {
+              const position = marker.getLatLng();
+              currentLat = position.lat;
+              currentLng = position.lng;
             });
 
-            // Add marker at initial location
-            marker = new google.maps.Marker({
-              position: initialLocation,
-              map: map,
-              draggable: true,
-              title: 'Selected Location'
+            // Update marker on map click
+            map.on('click', function(e) {
+              const latlng = e.latlng;
+              marker.setLatLng(latlng);
+              currentLat = latlng.lat;
+              currentLng = latlng.lng;
             });
 
-            // Update marker position when dragged
-            marker.addListener('dragend', function() {
-              const position = marker.getPosition();
-              currentLat = position.lat();
-              currentLng = position.lng();
-            });
-
-            // Add click listener to map to place marker
-            map.addListener('click', function(event) {
-              placeMarker(event.latLng);
-            });
-
-            // Setup button listeners
+            // Button listener
             document.getElementById('select-btn').addEventListener('click', function() {
-              // Send selected location back to app
               window.ReactNativeWebView.postMessage(JSON.stringify({
                 type: 'locationSelected',
                 lat: currentLat,
                 lng: currentLng
               }));
             });
-
-            document.getElementById('current-location').addEventListener('click', function() {
-              if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(function(position) {
-                  const pos = {
-                    lat: position.coords.latitude,
-                    lng: position.coords.longitude
-                  };
-
-                  map.setCenter(pos);
-                  placeMarker(pos);
-                  currentLat = pos.lat;
-                  currentLng = pos.lng;
-                }, function() {
-                  alert('Error: The Geolocation service failed.');
-                });
-              } else {
-                alert('Error: Your browser doesn\'t support geolocation.');
-              }
-            });
           }
 
-          function placeMarker(location) {
-            if (marker) {
-              marker.setPosition(location);
-            } else {
-              marker = new google.maps.Marker({
-                position: location,
-                map: map,
-                draggable: true
-              });
-
-              marker.addListener('dragend', function() {
-                const position = marker.getPosition();
-                currentLat = position.lat();
-                currentLng = position.lng();
-              });
-            }
-            currentLat = location.lat();
-            currentLng = location.lng();
-          }
-
-          // Fallback if Google Maps API fails to load
-          setTimeout(function() {
-            if (typeof google === 'undefined') {
-              document.body.innerHTML = '<div style="padding:20px;font-family:sans-serif;"><h2>Unable to load Google Maps</h2><p>Please check your internet connection and try again.</p></div>';
-            }
-          }, 5000);
-        </script>
-
-        <script async defer
-          src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBdVl-C6K9xwVuOWXCvZnJvYYyP0dF_wRQ&callback=initMap">
+          // Initialize on load
+          window.onload = initMap;
         </script>
       </body>
       </html>
