@@ -11,6 +11,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import LocationScreen from './src/screens/LocationScreen';
 import MapScreen from './src/components/MapScreen';
+import BrowserScreen from './src/screens/BrowserScreen';
 
 export interface Location {
   latitude: number;
@@ -21,6 +22,7 @@ export interface Location {
 export type RootStackParamList = {
   Home: undefined;
   Map: { location: Location };
+  Browser: { url: string };
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -49,6 +51,11 @@ function App() {
           name="Map"
           component={MapScreen}
           options={{ title: 'Interactive Map' }}
+        />
+        <Stack.Screen
+          name="Browser"
+          component={BrowserScreen}
+          options={{ title: 'Web Location Check' }}
         />
       </Stack.Navigator>
     </NavigationContainer>

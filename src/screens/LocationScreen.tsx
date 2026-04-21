@@ -144,6 +144,10 @@ const LocationScreen: React.FC<LocationScreenProps> = ({ navigation }) => {
     navigation.navigate('Map', { location });
   };
 
+  const openWebCheck = () => {
+    navigation.navigate('Browser', { url: 'https://www.gps-coordinates.net/' });
+  };
+
   const formatLocation = (location: Location): string => {
     return `${location.latitude.toFixed(6)}, ${location.longitude.toFixed(6)}`;
   };
@@ -201,6 +205,13 @@ const LocationScreen: React.FC<LocationScreenProps> = ({ navigation }) => {
           <Text style={styles.primaryButtonText}>
             {currentLocation ? 'Refresh Location' : 'Get Current Location'}
           </Text>
+        </TouchableOpacity>
+        
+        <TouchableOpacity 
+          style={[styles.primaryButton, { backgroundColor: '#673AB7', marginTop: 15 }]} 
+          onPress={openWebCheck}
+        >
+          <Text style={styles.primaryButtonText}>Open Web Location Check</Text>
         </TouchableOpacity>
       </View>
 
