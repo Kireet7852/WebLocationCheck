@@ -93,43 +93,42 @@ const LocationScreen: React.FC<LocationScreenProps> = ({ navigation }) => {
       }
     }
 
+    // 1. Quick Request (Instant cached location)
     GetLocation.getCurrentPosition({
-      enableHighAccuracy: true,
-      timeout: 30000,
+      enableHighAccuracy: false,
+      timeout: 5000,
+      maximumAge: 300000, // Use cached location up to 5 minutes old
     })
       .then(location => {
         const { latitude, longitude, time } = location;
-        const locationData: Location = {
+        setCurrentLocation({
           latitude,
           longitude,
           timestamp: time,
-        };
-        setCurrentLocation(locationData);
+        });
+        setLoading(false); // Stop spinner as we have "something"
+      })
+      .catch(() => {
+        // If quick request fails, just wait for the precise one
+      });
+
+    // 2. Precise Request (Background update)
+    GetLocation.getCurrentPosition({
+      enableHighAccuracy: true,
+      timeout: 15000,
+    })
+      .then(location => {
+        const { latitude, longitude, time } = location;
+        setCurrentLocation({
+          latitude,
+          longitude,
+          timestamp: time,
+        });
         setLoading(false);
       })
       .catch(error => {
-        console.log('GetLocation high accuracy failed, trying fast fallback:', error);
-        
-        // Instant fallback to network location
-        GetLocation.getCurrentPosition({
-          enableHighAccuracy: false,
-          timeout: 10000,
-        })
-          .then(location => {
-            const { latitude, longitude, time } = location;
-            const locationData: Location = {
-              latitude,
-              longitude,
-              timestamp: time,
-            };
-            setCurrentLocation(locationData);
-            setLoading(false);
-          })
-          .catch(lowAccError => {
-            setErrorMsg(`Error: ${lowAccError.message}`);
-            setLoading(false);
-            Alert.alert('Location Error', 'Could not retrieve location. Please ensure you are not in a basement or shielded area.');
-          });
+        console.log('Precise update failed:', error);
+        setLoading(false); // Ensure loading stops
       });
   };
 
