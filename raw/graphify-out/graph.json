@@ -1,0 +1,268 @@
+{
+  "directed": false,
+  "multigraph": false,
+  "graph": {},
+  "nodes": [
+    {
+      "label": "App.tsx",
+      "file_type": "code",
+      "source_file": "raw/App.tsx",
+      "source_location": "L1",
+      "id": "raw_app_tsx",
+      "community": 2,
+      "norm_label": "app.tsx"
+    },
+    {
+      "label": "App()",
+      "file_type": "code",
+      "source_file": "raw/App.tsx",
+      "source_location": "L30",
+      "id": "app_app",
+      "community": 2,
+      "norm_label": "app()"
+    },
+    {
+      "label": "BrowserScreen.tsx",
+      "file_type": "code",
+      "source_file": "raw/BrowserScreen.tsx",
+      "source_location": "L1",
+      "id": "raw_browserscreen_tsx",
+      "community": 4,
+      "norm_label": "browserscreen.tsx"
+    },
+    {
+      "label": "LocationScreen.tsx",
+      "file_type": "code",
+      "source_file": "raw/LocationScreen.tsx",
+      "source_location": "L1",
+      "id": "raw_locationscreen_tsx",
+      "community": 0,
+      "norm_label": "locationscreen.tsx"
+    },
+    {
+      "label": "requestLocationPermission()",
+      "file_type": "code",
+      "source_file": "raw/LocationScreen.tsx",
+      "source_location": "L48",
+      "id": "locationscreen_requestlocationpermission",
+      "community": 3,
+      "norm_label": "requestlocationpermission()"
+    },
+    {
+      "label": "getCurrentLocation()",
+      "file_type": "code",
+      "source_file": "raw/LocationScreen.tsx",
+      "source_location": "L68",
+      "id": "locationscreen_getcurrentlocation",
+      "community": 3,
+      "norm_label": "getcurrentlocation()"
+    },
+    {
+      "label": "saveCurrentLocation()",
+      "file_type": "code",
+      "source_file": "raw/LocationScreen.tsx",
+      "source_location": "L135",
+      "id": "locationscreen_savecurrentlocation",
+      "community": 0,
+      "norm_label": "savecurrentlocation()"
+    },
+    {
+      "label": "viewOnMap()",
+      "file_type": "code",
+      "source_file": "raw/LocationScreen.tsx",
+      "source_location": "L142",
+      "id": "locationscreen_viewonmap",
+      "community": 0,
+      "norm_label": "viewonmap()"
+    },
+    {
+      "label": "openWebCheck()",
+      "file_type": "code",
+      "source_file": "raw/LocationScreen.tsx",
+      "source_location": "L146",
+      "id": "locationscreen_openwebcheck",
+      "community": 0,
+      "norm_label": "openwebcheck()"
+    },
+    {
+      "label": "formatLocation()",
+      "file_type": "code",
+      "source_file": "raw/LocationScreen.tsx",
+      "source_location": "L150",
+      "id": "locationscreen_formatlocation",
+      "community": 0,
+      "norm_label": "formatlocation()"
+    },
+    {
+      "label": "formatDate()",
+      "file_type": "code",
+      "source_file": "raw/LocationScreen.tsx",
+      "source_location": "L154",
+      "id": "locationscreen_formatdate",
+      "community": 0,
+      "norm_label": "formatdate()"
+    },
+    {
+      "label": "MapScreen.tsx",
+      "file_type": "code",
+      "source_file": "raw/MapScreen.tsx",
+      "source_location": "L1",
+      "id": "raw_mapscreen_tsx",
+      "community": 1,
+      "norm_label": "mapscreen.tsx"
+    },
+    {
+      "label": "generateMapHTML()",
+      "file_type": "code",
+      "source_file": "raw/MapScreen.tsx",
+      "source_location": "L31",
+      "id": "mapscreen_generatemaphtml",
+      "community": 1,
+      "norm_label": "generatemaphtml()"
+    },
+    {
+      "label": "handleWebViewMessage()",
+      "file_type": "code",
+      "source_file": "raw/MapScreen.tsx",
+      "source_location": "L138",
+      "id": "mapscreen_handlewebviewmessage",
+      "community": 1,
+      "norm_label": "handlewebviewmessage()"
+    }
+  ],
+  "links": [
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "raw/App.tsx",
+      "source_location": "L30",
+      "weight": 1.0,
+      "_src": "raw_app_tsx",
+      "_tgt": "app_app",
+      "source": "raw_app_tsx",
+      "target": "app_app",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "raw/LocationScreen.tsx",
+      "source_location": "L48",
+      "weight": 1.0,
+      "_src": "raw_locationscreen_tsx",
+      "_tgt": "locationscreen_requestlocationpermission",
+      "source": "raw_locationscreen_tsx",
+      "target": "locationscreen_requestlocationpermission",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "raw/LocationScreen.tsx",
+      "source_location": "L68",
+      "weight": 1.0,
+      "_src": "raw_locationscreen_tsx",
+      "_tgt": "locationscreen_getcurrentlocation",
+      "source": "raw_locationscreen_tsx",
+      "target": "locationscreen_getcurrentlocation",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "raw/LocationScreen.tsx",
+      "source_location": "L135",
+      "weight": 1.0,
+      "_src": "raw_locationscreen_tsx",
+      "_tgt": "locationscreen_savecurrentlocation",
+      "source": "raw_locationscreen_tsx",
+      "target": "locationscreen_savecurrentlocation",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "raw/LocationScreen.tsx",
+      "source_location": "L142",
+      "weight": 1.0,
+      "_src": "raw_locationscreen_tsx",
+      "_tgt": "locationscreen_viewonmap",
+      "source": "raw_locationscreen_tsx",
+      "target": "locationscreen_viewonmap",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "raw/LocationScreen.tsx",
+      "source_location": "L146",
+      "weight": 1.0,
+      "_src": "raw_locationscreen_tsx",
+      "_tgt": "locationscreen_openwebcheck",
+      "source": "raw_locationscreen_tsx",
+      "target": "locationscreen_openwebcheck",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "raw/LocationScreen.tsx",
+      "source_location": "L150",
+      "weight": 1.0,
+      "_src": "raw_locationscreen_tsx",
+      "_tgt": "locationscreen_formatlocation",
+      "source": "raw_locationscreen_tsx",
+      "target": "locationscreen_formatlocation",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "raw/LocationScreen.tsx",
+      "source_location": "L154",
+      "weight": 1.0,
+      "_src": "raw_locationscreen_tsx",
+      "_tgt": "locationscreen_formatdate",
+      "source": "raw_locationscreen_tsx",
+      "target": "locationscreen_formatdate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "raw/LocationScreen.tsx",
+      "source_location": "L72",
+      "weight": 1.0,
+      "_src": "locationscreen_getcurrentlocation",
+      "_tgt": "locationscreen_requestlocationpermission",
+      "source": "locationscreen_requestlocationpermission",
+      "target": "locationscreen_getcurrentlocation",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "raw/MapScreen.tsx",
+      "source_location": "L31",
+      "weight": 1.0,
+      "_src": "raw_mapscreen_tsx",
+      "_tgt": "mapscreen_generatemaphtml",
+      "source": "raw_mapscreen_tsx",
+      "target": "mapscreen_generatemaphtml",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "raw/MapScreen.tsx",
+      "source_location": "L138",
+      "weight": 1.0,
+      "_src": "raw_mapscreen_tsx",
+      "_tgt": "mapscreen_handlewebviewmessage",
+      "source": "raw_mapscreen_tsx",
+      "target": "mapscreen_handlewebviewmessage",
+      "confidence_score": 1.0
+    }
+  ],
+  "hyperedges": []
+}

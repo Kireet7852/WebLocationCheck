@@ -1,0 +1,153 @@
+{
+  "nodes": [
+    {
+      "id": "App_LocationScreen",
+      "label": "LocationScreen Component",
+      "file_type": "code",
+      "source_file": "raw/LocationScreen.tsx",
+      "source_location": null,
+      "source_url": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "App_MapScreen",
+      "label": "MapScreen Component",
+      "file_type": "code",
+      "source_file": "raw/MapScreen.tsx",
+      "source_location": null,
+      "source_url": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "App_BrowserScreen",
+      "label": "BrowserScreen Component",
+      "file_type": "code",
+      "source_file": "raw/BrowserScreen.tsx",
+      "source_location": null,
+      "source_url": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "App_RootStackParamList",
+      "label": "RootStackParamList Type",
+      "file_type": "code",
+      "source_file": "raw/App.tsx",
+      "source_location": null,
+      "source_url": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "App_Component",
+      "label": "App Component",
+      "file_type": "code",
+      "source_file": "raw/App.tsx",
+      "source_location": null,
+      "source_url": null,
+      "author": null,
+      "contributor": null
+    }
+  ],
+  "edges": [
+    {
+      "source": "App_LocationScreen",
+      "target": "App_Component",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "raw/App.tsx",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "App_MapScreen",
+      "target": "App_Component",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "raw/App.tsx",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "App_BrowserScreen",
+      "target": "App_Component",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "raw/App.tsx",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "App_LocationScreen",
+      "target": "App_MapScreen",
+      "relation": "navigates_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "raw/LocationScreen.tsx",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "App_LocationScreen",
+      "target": "App_BrowserScreen",
+      "relation": "navigates_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "raw/LocationScreen.tsx",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "App_LocationScreen",
+      "target": "App_RootStackParamList",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "raw/LocationScreen.tsx",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "App_MapScreen",
+      "target": "App_RootStackParamList",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "raw/MapScreen.tsx",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "App_BrowserScreen",
+      "target": "App_RootStackParamList",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "raw/BrowserScreen.tsx",
+      "source_location": null,
+      "weight": 1.0
+    }
+  ],
+  "hyperedges": [
+    {
+      "id": "app_navigation_flow",
+      "label": "App Navigation Flow",
+      "nodes": [
+        "App_LocationScreen",
+        "App_MapScreen",
+        "App_BrowserScreen"
+      ],
+      "relation": "participate_in",
+      "confidence": "INFERRED",
+      "confidence_score": 0.75,
+      "source_file": "raw/App.tsx"
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}
