@@ -1,4 +1,0 @@
-raw/App.tsx
-raw/BrowserScreen.tsx
-raw/LocationScreen.tsx
-raw/MapScreen.tsx

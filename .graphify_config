@@ -1,0 +1,12 @@
+{
+  "include": [
+    "src/**/*",
+    "package.json",
+    "android/**/*"
+  ],
+  "exclude": [
+    "node_modules/**/*",
+    "raw/**/*",
+    "graphify-out/**/*"
+  ]
+}

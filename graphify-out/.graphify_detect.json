@@ -1,1 +1,0 @@
-{"files": {"code": ["raw/App.tsx", "raw/BrowserScreen.tsx", "raw/LocationScreen.tsx", "raw/MapScreen.tsx"], "document": [], "paper": [], "image": [], "video": []}, "total_files": 4, "total_words": 1854, "needs_graph": false, "warning": "Corpus is ~1,854 words - fits in a single context window. You may not need a graph.", "skipped_sensitive": [], "graphifyignore_patterns": 0}
